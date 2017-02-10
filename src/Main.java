@@ -10,8 +10,24 @@ public class Main {
 
         System.out.println("Welcome to the Grand Circus Motors admin console!");
         System.out.print("How many cars are you entering: ");
-        int carsEntering = scan1.nextInt();
+        int carInput = scan1.nextInt();
+        int carsEntering = Validate.getValidInteger(1, carInput);
 
+        ArrayList<Car> carList = getCars(scan1, carsEntering);
+
+
+        System.out.println();
+        System.out.println("Current Inventory: ");
+
+        for (Car c : carList) {
+            System.out.println(c.toString());
+
+        }
+
+
+    }
+
+    private static ArrayList<Car> getCars(Scanner scan1, int carsEntering) {
         ArrayList<Car> carList = new ArrayList<Car>();
 
         for (int i = 0; i < carsEntering; i++) {
@@ -28,15 +44,6 @@ public class Main {
 
             carList.add(new Car(make, model, year, price));
         }
-
-        System.out.println();
-        System.out.println("Current Inventory: ");
-
-        for (Car c : carList) {
-            System.out.println(c.toString());
-
-        }
-
-
+        return carList;
     }
 }
